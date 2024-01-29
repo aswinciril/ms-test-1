@@ -7,6 +7,7 @@ import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
+//hey this is my first commit
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
