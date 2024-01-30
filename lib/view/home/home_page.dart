@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/controller/dish_controller.dart';
 import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<void> _fetchData;
+  User? _user;
   @override
   void initState() {
     super.initState();
@@ -25,6 +27,10 @@ class _HomePageState extends State<HomePage> {
     final dishProvider =
         Provider.of<DishListController>(context, listen: false);
     await dishProvider.getDishesData();
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _user = currentUser;
+    });
   }
 
   @override
@@ -120,17 +126,17 @@ class _HomePageState extends State<HomePage> {
                       height: 10.sp,
                     ),
                     Text(
-                      "Aswin Ciril",
+                      _getUserDisplayName(),
                       style: TextStyle(
-                          fontSize: 15.sp, fontWeight: FontWeight.bold),
+                          fontSize: 15.sp, fontWeight: FontWeight.w700),
                     ),
                     SizedBox(
                       height: 3.sp,
                     ),
                     Text(
-                      "ID :410",
+                      "ID : ${_user?.uid.substring(0, 4) ?? 'Guest'}",
                       style: TextStyle(
-                          fontSize: 12.sp, fontWeight: FontWeight.normal),
+                          fontSize: 12.sp, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -177,5 +183,21 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  // Function to get the user display name or phone number
+  String _getUserDisplayName() {
+    if (_user != null) {
+      // If user is logged in
+      if (_user!.displayName != null && _user!.displayName!.isNotEmpty) {
+        // If the user has a display name (Google sign-in)
+        return _user!.displayName!;
+      } else if (_user!.phoneNumber != null && _user!.phoneNumber!.isNotEmpty) {
+        // If the user has a phone number (Phone OTP sign-in)
+        return _user!.phoneNumber!;
+      }
+    }
+    // Default value if no user is logged in or no display name/phone number available
+    return "Guest User";
   }
 }
