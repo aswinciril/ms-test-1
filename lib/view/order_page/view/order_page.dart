@@ -26,137 +26,139 @@ class OrderPage extends StatelessWidget {
         centerTitle: false,
         title: const Text("Order Summary"),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(15.sp),
-            child: Container(
-              height: 410.sp,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(255, 219, 216, 216),
-                  width: 1.5.sp,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(15.sp),
+              child: Container(
+                height: 410.sp,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 219, 216, 216),
+                    width: 1.5.sp,
+                  ),
+                  borderRadius: BorderRadius.circular(8.sp),
                 ),
-                borderRadius: BorderRadius.circular(8.sp),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 330.sp,
-                    child: Stack(
-                      children: [
-                        // Container above OrderList
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            height: 40.sp,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 6, 66, 8),
-                              borderRadius: BorderRadius.circular(8.sp),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "${uniqueDishIds.length} Dishes - ${counterProvider.totalCount} Items",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13.sp,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 330.sp,
+                      child: Stack(
+                        children: [
+                          // Container above OrderList
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              height: 40.sp,
+                              decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 6, 66, 8),
+                                borderRadius: BorderRadius.circular(8.sp),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "${uniqueDishIds.length} Dishes - ${counterProvider.totalCount} Items",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13.sp,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        // OrderList
-                        Positioned(
-                          top: 40
-                              .sp, // Adjust the position based on the height of the above container
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          child: Padding(
-                            padding: EdgeInsets.all(2.sp),
-                            child: OrderList(),
+                          // OrderList
+                          Positioned(
+                            top: 40
+                                .sp, // Adjust the position based on the height of the above container
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child: Padding(
+                              padding: EdgeInsets.all(2.sp),
+                              child: OrderList(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Divider(
-                    color: const Color.fromARGB(255, 175, 175, 175),
+                    Divider(
+                      color: const Color.fromARGB(255, 175, 175, 175),
+                    ),
+                    SizedBox(
+                      height: 9.sp,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Total Amount",
+                            style: TextStyle(
+                                fontSize: 16.sp, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "INR :${counterProvider.totalDishSum}",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 54, 123, 56),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 20.sp),
+                    child: Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            counterProvider.clearCart();
+                          },
+                          child: Text(
+                            "Clear Cart",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )),
                   ),
                   SizedBox(
-                    height: 9.sp,
+                    height: 10.sp,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Total Amount",
-                          style: TextStyle(
-                              fontSize: 16.sp, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "INR :${counterProvider.totalDishSum}",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 54, 123, 56),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400),
-                        )
-                      ],
-                    ),
+                  CustomButton(
+                    onpressed: () {
+                      Fluttertoast.showToast(
+                        msg: "Order placed successfully!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        webShowClose: false,
+                        backgroundColor: Colors.green, // Use backgroundColor
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+                    },
+                    width: 5,
+                    primarycolor: const Color.fromARGB(255, 6, 66, 8),
+                    onprimarycolor: const Color.fromARGB(255, 255, 255, 255),
+                    title: "Place Order",
+                    fontweight: FontWeight.w700,
                   ),
                 ],
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 20.sp),
-                  child: Align(
-                      alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          counterProvider.clearCart();
-                        },
-                        child: Text(
-                          "Clear Cart",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      )),
-                ),
-                SizedBox(
-                  height: 10.sp,
-                ),
-                CustomButton(
-                  onpressed: () {
-                    Fluttertoast.showToast(
-                      msg: "Order placed successfully!",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      webShowClose: false,
-                      backgroundColor: Colors.green, // Use backgroundColor
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
-                  },
-                  width: 5,
-                  primarycolor: const Color.fromARGB(255, 6, 66, 8),
-                  onprimarycolor: const Color.fromARGB(255, 255, 255, 255),
-                  title: "Place Order",
-                  fontweight: FontWeight.w700,
-                ),
-              ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

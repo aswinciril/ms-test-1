@@ -1,12 +1,51 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/custom_widgets/Buttons/custom_button.dart';
 import 'package:machinetest/view/Authentication/phone_login/phone_login_page.dart';
 import 'package:machinetest/view/home/home_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
+  Future<void> _signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return;
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // If you want to do something after successful sign-in, you can handle it here.
+      print("Google Sign-In Successful: ${userCredential.user?.displayName}");
+
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    } catch (e) {
+      print("Google Sign-In Failed: $e");
+      // Handle sign-in failure here
+    }
+  }
+
+  Future<void> _signOutFromGoogle() async {
+    try {
+      await GoogleSignIn().signOut();
+      await FirebaseAuth.instance.signOut();
+      print("Sign Out Successful");
+    } catch (e) {
+      print("Sign Out Failed: $e");
+      // Handle sign-out failure here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +70,7 @@ class LoginPage extends StatelessWidget {
             ),
             CustomButton(
               onpressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ));
+                _signInWithGoogle(context);
               },
               width: 10,
               title: "Google",
