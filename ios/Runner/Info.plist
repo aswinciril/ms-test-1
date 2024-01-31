@@ -10,7 +10,8 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <!-- Replace this string with your custom URL scheme -->
-                <string>com.googleusercontent.apps.59388261711-49erht58lunhtepb7dfetuhdo0e1haha</string>
+                <string>app-1-59388261711-ios-8485c28508b9800897c13a</string>
+                 <!-- <string>com.googleusercontent.apps.59388261711-49erht58lunhtepb7dfetuhdo0e1haha</string> -->
             </array>
         </dict>
     </array>
