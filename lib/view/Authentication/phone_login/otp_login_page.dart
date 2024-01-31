@@ -153,8 +153,8 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
               child: CustomButton(
                 onpressed: _signInWithOTP,
                 width: 10,
-                title: "Verify",
-                primarycolor: Color.fromARGB(255, 81, 216, 85),
+                title: "  Verify",
+                primarycolor: Color.fromARGB(255, 113, 208, 114),
                 onprimarycolor: Colors.white,
               ),
             )
