@@ -24,7 +24,7 @@ class OrderDetailContainer extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.all(3.sp),
-      child: Container(
+      child: SizedBox(
         height: 80.sp,
         child: Column(
           children: [
@@ -38,9 +38,9 @@ class OrderDetailContainer extends StatelessWidget {
                       height: 1.sp,
                     ),
                     if (dish.dishType == 1)
-                      NonVegContainer()
+                      const NonVegContainer()
                     else
-                      VegContainer()
+                      const VegContainer()
                   ],
                 ),
                 SizedBox(

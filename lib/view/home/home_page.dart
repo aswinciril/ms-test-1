@@ -61,8 +61,8 @@ class _HomePageState extends State<HomePage> {
                 right: 5,
                 top: 0,
                 child: Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.red,
                   ),
@@ -100,11 +100,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width * 1,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      const Color.fromARGB(255, 63, 156, 66),
-                      const Color.fromARGB(255, 33, 243, 100),
+                      Color.fromARGB(255, 63, 156, 66),
+                      Color.fromARGB(255, 33, 243, 100),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return UserLogout();
+                        return const UserLogout();
                       });
                 },
               )
