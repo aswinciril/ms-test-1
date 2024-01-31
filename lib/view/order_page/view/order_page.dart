@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:machinetest/custom_widgets/Buttons/custom_button.dart';
-import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:machinetest/view/order_page/view/order_list.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';

@@ -6,10 +6,7 @@ import 'package:machinetest/view/Authentication/login_page.dart';
 import 'package:provider/provider.dart';
 
 class UserLogout extends StatelessWidget {
-  void _logout(BuildContext context) {
-    // Call the logout function
-    Provider.of<DishListController>(context, listen: false).resetState();
-  }
+  const UserLogout({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +33,7 @@ class UserLogout extends StatelessWidget {
                 _logout(context);
               } else {
                 // User is not logged in with Google, navigate to login page directly
+                _logout(context);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const LoginPage(),
                 ));
@@ -46,5 +44,10 @@ class UserLogout extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _logout(BuildContext context) {
+    // Call the logout function
+    Provider.of<DishListController>(context, listen: false).resetState();
   }
 }

@@ -33,8 +33,9 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
 
       // Check if the user is not null
       if (user != null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
       } else {
         // Handle the case where the user is null
         print("Error: User is null after signing in with OTP");

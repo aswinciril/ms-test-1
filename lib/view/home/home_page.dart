@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/controller/dish_controller.dart';
-import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:machinetest/view/Tab_1/view/food_list.dart';
 import 'package:machinetest/view/home/userlogout.dart';
 import 'package:machinetest/view/order_page/view/order_page.dart';

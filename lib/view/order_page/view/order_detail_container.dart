@@ -3,7 +3,7 @@ import 'package:machinetest/custom_widgets/container/non_veg_container.dart';
 import 'package:machinetest/custom_widgets/container/veg_container.dart';
 import 'package:machinetest/custom_widgets/dish_details/dish_details.dart';
 import 'package:machinetest/model/dish_model.dart';
-import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:machinetest/view/Tab_1/widgets/counter_widget.dart';
 import 'package:provider/provider.dart';
 

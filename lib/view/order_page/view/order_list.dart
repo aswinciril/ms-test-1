@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:machinetest/model/dish_model.dart';
-import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:machinetest/view/order_page/view/order_detail_container.dart';
 import 'package:provider/provider.dart';
 

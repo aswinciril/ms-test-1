@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:machinetest/model/dish_model.dart';
 import 'package:provider/provider.dart';
-import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class CounterWidget extends StatelessWidget {
