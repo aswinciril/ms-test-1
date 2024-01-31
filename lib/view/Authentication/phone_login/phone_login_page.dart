@@ -102,7 +102,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.6,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
                 ),
                 decoration: BoxDecoration(
@@ -113,14 +113,14 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
                 child: TextField(
                   controller: phoneNumberController,
                   keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
@@ -132,8 +132,26 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
                 onpressed: _verifyPhoneNumber,
                 width: 10,
                 title: "Get Otp",
-                primarycolor: Color.fromARGB(255, 81, 216, 85),
+                primarycolor: const Color.fromARGB(255, 81, 216, 85),
                 onprimarycolor: Colors.white,
+              ),
+              SizedBox(
+                height: 30.sp,
+              ),
+              Text(
+                "Test Number : 9988776655 ",
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ),
+              SizedBox(
+                height: 10.sp,
+              ),
+              Text(
+                "Test OTP : 123456",
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.5),
+                ),
               ),
             ],
           ),

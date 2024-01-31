@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/custom_widgets/Buttons/custom_button.dart';
@@ -12,7 +14,10 @@ class LoginPage extends StatelessWidget {
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return;
+      if (googleUser == null) {
+        print("Google Sign-In canceled by user.");
+        return;
+      }
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
@@ -24,15 +29,13 @@ class LoginPage extends StatelessWidget {
       final UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
 
-      // If you want to do something after successful sign-in, you can handle it here.
       print("Google Sign-In Successful: ${userCredential.user?.displayName}");
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => const HomePage(),
       ));
     } catch (e) {
       print("Google Sign-In Failed: $e");
-      // Handle sign-in failure here
     }
   }
 
@@ -84,13 +87,13 @@ class LoginPage extends StatelessWidget {
             CustomButton(
               onpressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PhoneLoginPage(),
+                  builder: (context) => const PhoneLoginPage(),
                 ));
               },
               width: 10,
               title: "Phone",
               icon: Icons.call,
-              primarycolor: Color.fromARGB(255, 4, 234, 38),
+              primarycolor: const Color.fromARGB(255, 4, 234, 38),
               onprimarycolor: Colors.white,
             ),
           ],
