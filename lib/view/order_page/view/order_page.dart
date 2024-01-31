@@ -7,7 +7,9 @@ import 'package:sizer/sizer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class OrderPage extends StatelessWidget {
-  const OrderPage({Key? key});
+  const OrderPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,9 @@ class OrderPage extends StatelessWidget {
     Set<String> uniqueDishIds = {};
 
     // Iterate through selectedDishes to count unique dishes
-    counterProvider.selectedDishes.forEach((dish) {
+    for (var dish in counterProvider.selectedDishes) {
       uniqueDishIds.add(dish.dishId);
-    });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +44,7 @@ class OrderPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 330.sp,
                       child: Stack(
                         children: [
@@ -84,8 +86,8 @@ class OrderPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Divider(
-                      color: const Color.fromARGB(255, 175, 175, 175),
+                    const Divider(
+                      color: Color.fromARGB(255, 175, 175, 175),
                     ),
                     SizedBox(
                       height: 9.sp,
@@ -104,7 +106,7 @@ class OrderPage extends StatelessWidget {
                           Text(
                             "INR :${counterProvider.totalDishSum}",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 54, 123, 56),
+                                color: const Color.fromARGB(255, 54, 123, 56),
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400),
                           )
@@ -127,7 +129,7 @@ class OrderPage extends StatelessWidget {
                           onTap: () {
                             counterProvider.clearCart();
                           },
-                          child: Text(
+                          child: const Text(
                             "Clear Cart",
                             style: TextStyle(color: Colors.black),
                           ),
