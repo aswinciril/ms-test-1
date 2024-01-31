@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
             ),
             CustomButton(
               onpressed: () {
-                googleProvider.signOutFromGoogle();
+                googleProvider.signInWithGoogle(context);
               },
               width: 10,
               title: "Google",

@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             useMaterial3: true,
           ),
-          home: LoginPage(),
+          home: const LoginPage(),
         ),
       ),
     );
