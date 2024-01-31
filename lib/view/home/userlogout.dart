@@ -1,27 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:machinetest/controller/dish_controller.dart';
+import 'package:machinetest/controller/google_controller.dart';
 import 'package:machinetest/view/Authentication/login_page.dart';
 import 'package:provider/provider.dart';
 
 class UserLogout extends StatelessWidget {
-  Future<void> _signOutFromGoogle(BuildContext context) async {
-    try {
-      await GoogleSignIn().signOut();
-      await FirebaseAuth.instance.signOut();
-      print("Sign Out Successful");
-
-      // Navigate back to the login page
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LoginPage(),
-      ));
-    } catch (e) {
-      print("Sign Out Failed: $e");
-      // Handle sign-out failure here
-    }
-  }
-
   void _logout(BuildContext context) {
     // Call the logout function
     Provider.of<DishListController>(context, listen: false).resetState();
@@ -29,15 +13,16 @@ class UserLogout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final googleProvider = Provider.of<GoogleProvider>(context);
     return AlertDialog(
-      title: Text('Logout Confirmation'),
-      content: Text('Are you sure you want to Logout?'),
+      title: const Text('Logout Confirmation'),
+      content: const Text('Are you sure you want to Logout?'),
       actions: <Widget>[
         TextButton(
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: () {
@@ -47,17 +32,17 @@ class UserLogout extends StatelessWidget {
               // Check if the user is logged in with Google
               if (user.providerData
                   .any((info) => info.providerId == 'google.com')) {
-                _signOutFromGoogle(context);
+                googleProvider.signOutFromGoogle;
                 _logout(context);
               } else {
                 // User is not logged in with Google, navigate to login page directly
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ));
               }
             }
           },
-          child: Text('Logout'),
+          child: const Text('Logout'),
         ),
       ],
     );

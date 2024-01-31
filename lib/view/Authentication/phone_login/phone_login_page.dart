@@ -37,9 +37,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
           ),
         ));
       },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Auto-retrieval timeout, if needed
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 

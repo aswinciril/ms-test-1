@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/controller/dish_controller.dart';
+import 'package:machinetest/controller/google_controller.dart';
 
 import 'package:machinetest/view/Authentication/login_page.dart';
 import 'package:machinetest/view/Tab_1/controller/counter_provider.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (context) => GoogleProvider(),
+        ),
         ChangeNotifierProvider(
           create: (context) => CounterProvider(),
         ),

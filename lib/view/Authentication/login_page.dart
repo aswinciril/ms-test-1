@@ -1,55 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:machinetest/controller/google_controller.dart';
 import 'package:machinetest/custom_widgets/Buttons/custom_button.dart';
 import 'package:machinetest/view/Authentication/phone_login/phone_login_page.dart';
-import 'package:machinetest/view/home/home_page.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) {
-        print("Google Sign-In canceled by user.");
-        return;
-      }
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-
-      print("Google Sign-In Successful: ${userCredential.user?.displayName}");
-
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ));
-    } catch (e) {
-      print("Google Sign-In Failed: $e");
-    }
-  }
-
-  Future<void> _signOutFromGoogle() async {
-    try {
-      await GoogleSignIn().signOut();
-      await FirebaseAuth.instance.signOut();
-      print("Sign Out Successful");
-    } catch (e) {
-      print("Sign Out Failed: $e");
-      // Handle sign-out failure here
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final googleProvider = Provider.of<GoogleProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,7 +32,7 @@ class LoginPage extends StatelessWidget {
             ),
             CustomButton(
               onpressed: () {
-                _signInWithGoogle(context);
+                googleProvider.signOutFromGoogle();
               },
               width: 10,
               title: "Google",

@@ -113,9 +113,7 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
               highlightColor: const Color.fromARGB(255, 67, 161, 237),
               defaultBorderColor: Colors.white,
               hasTextBorderColor: Colors.green,
-              onTextChanged: (String value) {
-                // You can handle changes in the PIN code input here
-              },
+              onTextChanged: (String value) {},
             ),
             SizedBox(height: 23.sp),
 
