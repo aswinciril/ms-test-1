@@ -32,9 +32,9 @@ class FoodDetailContainer extends StatelessWidget {
                   height: 10.sp,
                 ),
                 if (dishlist.dishType == 1)
-                  NonVegContainer()
+                  const NonVegContainer()
                 else
-                  VegContainer()
+                  const VegContainer()
               ],
             ),
             SizedBox(
@@ -68,7 +68,7 @@ class FoodDetailContainer extends StatelessWidget {
                   height: 13.sp,
                 ),
                 CounterWidget(
-                  color: Color.fromARGB(255, 86, 190, 89),
+                  color: const Color.fromARGB(255, 86, 190, 89),
                   dishId: dishlist.dishId,
                   dishlist: dishlist,
                 ),
@@ -76,7 +76,7 @@ class FoodDetailContainer extends StatelessWidget {
                   height: 10.sp,
                 ),
                 if (dishlist.addonCat != null && dishlist.addonCat!.isNotEmpty)
-                  DishAddons(),
+                  const DishAddons(),
               ],
             ),
             SizedBox(

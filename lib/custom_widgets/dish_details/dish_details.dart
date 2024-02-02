@@ -24,7 +24,7 @@ class DishAddons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       "Customizations Available",
       style: TextStyle(color: Colors.red),
     );
@@ -62,7 +62,7 @@ class DishCalorie extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "$calorie Calories",
-      style: TextStyle(fontWeight: FontWeight.bold),
+      style: const TextStyle(fontWeight: FontWeight.bold),
     );
   }
 }

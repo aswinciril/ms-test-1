@@ -14,8 +14,8 @@ class FoodList extends StatelessWidget {
           return FoodDetailContainer(dishlist: value.dishmodelList[index]);
         },
         itemCount: value.dishmodelList.length,
-        separatorBuilder: (context, index) => Divider(
-          color: const Color.fromARGB(255, 175, 175, 175),
+        separatorBuilder: (context, index) => const Divider(
+          color: Color.fromARGB(255, 175, 175, 175),
         ),
       ),
     );

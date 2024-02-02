@@ -24,7 +24,7 @@ class NonVegContainer extends StatelessWidget {
             child: Container(
               width: 20.0, // Adjust the size of the dot as needed
               height: 10.0,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.red, // Dot color
               ),

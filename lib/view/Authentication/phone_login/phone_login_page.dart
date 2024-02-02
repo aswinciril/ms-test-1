@@ -16,7 +16,7 @@ class _PhoneLoginPageState extends State<PhoneLoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController phoneNumberController =
-      TextEditingController(text: "+91 - ");
+      TextEditingController(text: "+91-");
   TextEditingController otpController = TextEditingController();
 
   Future<void> _verifyPhoneNumber() async {

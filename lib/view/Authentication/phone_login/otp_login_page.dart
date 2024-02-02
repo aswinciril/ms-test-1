@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,11 +40,11 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
         ));
       } else {
         // Handle the case where the user is null
-        print("Error: User is null after signing in with OTP");
+        log("Error: User is null after signing in with OTP");
       }
     } catch (e) {
       // Handle sign-in failure
-      print("Error: $e");
+      log("Error: $e");
     }
   }
 
@@ -139,7 +141,7 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
                     textStyle: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 179, 221, 255)),
+                        color: const Color.fromARGB(255, 179, 221, 255)),
                   ),
                 ),
               ],
@@ -153,7 +155,7 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
                 onpressed: _signInWithOTP,
                 width: 10,
                 title: "  Verify",
-                primarycolor: Color.fromARGB(255, 113, 208, 114),
+                primarycolor: const Color.fromARGB(255, 113, 208, 114),
                 onprimarycolor: Colors.white,
               ),
             )
