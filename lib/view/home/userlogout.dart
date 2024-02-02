@@ -10,6 +10,11 @@ class UserLogout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _logout(BuildContext context) {
+      // Call the logout function
+      Provider.of<DishListController>(context, listen: false).resetState();
+    }
+
     final googleProvider = Provider.of<GoogleProvider>(context);
     return AlertDialog(
       title: const Text('Logout Confirmation'),
@@ -29,8 +34,11 @@ class UserLogout extends StatelessWidget {
               // Check if the user is logged in with Google
               if (user.providerData
                   .any((info) => info.providerId == 'google.com')) {
-                googleProvider.signOutFromGoogle;
+                googleProvider.signOutFromGoogle();
                 _logout(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ));
               } else {
                 // User is not logged in with Google, navigate to login page directly
                 _logout(context);
@@ -44,10 +52,5 @@ class UserLogout extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  void _logout(BuildContext context) {
-    // Call the logout function
-    Provider.of<DishListController>(context, listen: false).resetState();
   }
 }
