@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:machinetest/controller/dish_controller.dart';
 import 'package:machinetest/view/home/home_page.dart';
+import 'package:provider/provider.dart';
 
 class GoogleProvider extends ChangeNotifier {
   Future<void> signInWithGoogle(BuildContext context) async {
@@ -36,6 +38,7 @@ class GoogleProvider extends ChangeNotifier {
     try {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
+
       print("Sign Out Successful");
     } catch (e) {
       print("Sign Out Failed: $e");

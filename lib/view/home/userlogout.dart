@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:machinetest/controller/counter_provider.dart';
 import 'package:machinetest/controller/dish_controller.dart';
 import 'package:machinetest/controller/google_controller.dart';
 import 'package:machinetest/view/Authentication/login_page.dart';
@@ -10,8 +11,10 @@ class UserLogout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _logout(BuildContext context) {
+    final counterProvider = Provider.of<CounterProvider>(context);
+    void logout(BuildContext context) {
       // Call the logout function
+      counterProvider.clearCart();
       Provider.of<DishListController>(context, listen: false).resetState();
     }
 
@@ -35,13 +38,13 @@ class UserLogout extends StatelessWidget {
               if (user.providerData
                   .any((info) => info.providerId == 'google.com')) {
                 googleProvider.signOutFromGoogle();
-                _logout(context);
+                logout(context);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const LoginPage(),
                 ));
               } else {
                 // User is not logged in with Google, navigate to login page directly
-                _logout(context);
+                logout(context);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const LoginPage(),
                 ));
