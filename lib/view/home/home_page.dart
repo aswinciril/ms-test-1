@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:machinetest/controller/dish_controller.dart';
 import 'package:machinetest/controller/counter_provider.dart';
+import 'package:machinetest/model/restaurent_model.dart';
 import 'package:machinetest/view/Tab_1/view/food_list.dart';
 import 'package:machinetest/view/home/userlogout.dart';
 import 'package:machinetest/view/order_page/view/order_page.dart';
@@ -9,7 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+  });
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -31,11 +35,18 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _user = currentUser;
     });
+    dishProvider.getRestaurentData(); //TODO
   }
 
   @override
   Widget build(BuildContext context) {
     final counterProvider = Provider.of<CounterProvider>(context);
+    Set<String> uniqueDishIds = {};
+
+    // Iterate through selectedDishes to count unique dishes
+    for (var dish in counterProvider.selectedDishes) {
+      uniqueDishIds.add(dish.dishId);
+    }
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {});
     return DefaultTabController(
       length: 3,
@@ -67,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.red,
                   ),
                   child: Text(
-                    "${counterProvider.totalCount}", // Display total count
+                    "${uniqueDishIds.length}", // Display total count
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -77,12 +88,13 @@ class _HomePageState extends State<HomePage> {
               )
             ]),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
             isScrollable: true,
             tabs: [
               Tab(
                 text: "Salads and Soups",
               ),
+              // Tab(text: widget.tablelist!.menuCategory),
               Tab(
                 text: "From the Banyard",
               ),

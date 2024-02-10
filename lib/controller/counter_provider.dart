@@ -45,6 +45,10 @@ class CounterProvider extends ChangeNotifier {
   void decrementCount(String dishId) {
     if (dishCounts[dishId] != null && dishCounts[dishId]! > 0) {
       dishCounts[dishId] = (dishCounts[dishId] ?? 0) - 1;
+      if (dishCounts[dishId] == 0) {
+        // If the count becomes 0, remove the dish from selectedDishes and decrement the unique dish count
+        removeFromSelectedDishes(dishId);
+      }
       notifyListeners();
     }
   }
