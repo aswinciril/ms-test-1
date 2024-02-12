@@ -149,6 +149,7 @@ class OrderPage extends StatelessWidget {
                         textColor: Colors.white,
                         fontSize: 16.0,
                       );
+                      // counterProvider.clearCart();  if need to clear cart after placing order
                     },
                     width: 5,
                     primarycolor: const Color.fromARGB(255, 6, 66, 8),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:machinetest/controller/google_controller.dart';
 import 'package:machinetest/custom_widgets/Buttons/custom_button.dart';
 import 'package:machinetest/view/Authentication/phone_login/phone_login_page.dart';
-import 'package:machinetest/view/home/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,12 +32,12 @@ class LoginPage extends StatelessWidget {
             ),
             CustomButton(
               onpressed: () {
-                // googleProvider.signInWithGoogle(context);TODO
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ));
+                googleProvider.signInWithGoogle(context);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => const HomePage(),
+                //     ));
               },
               width: 10,
               title: "Google",

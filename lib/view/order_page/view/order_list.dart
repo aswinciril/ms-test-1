@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:machinetest/model/dish_model.dart';
 import 'package:machinetest/controller/counter_provider.dart';
+import 'package:machinetest/model/restaurent_model.dart';
 import 'package:machinetest/view/order_page/view/order_detail_container.dart';
 import 'package:provider/provider.dart';
 
@@ -15,14 +15,14 @@ class OrderList extends StatelessWidget {
         Set<String> uniqueDishIds = {};
 
         // Filter selectedDishes based on count
-        List<DishListModel> filteredDishes = counterProvider.selectedDishes
+        List<CategoryDish> filteredDishes = counterProvider.selectedDishes
             .where((dish) => counterProvider.dishCounts[dish.dishId] != 0)
             .toList();
 
         return ListView.separated(
           itemBuilder: (context, index) {
             // Get the dish from filteredDishes
-            DishListModel dish = filteredDishes[index];
+            CategoryDish dish = filteredDishes[index];
 
             // Check if the dishId is already added to the uniqueDishIds set
             if (uniqueDishIds.contains(dish.dishId)) {

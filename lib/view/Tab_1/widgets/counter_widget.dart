@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:machinetest/model/dish_model.dart';
+import 'package:machinetest/model/restaurent_model.dart';
 import 'package:provider/provider.dart';
 import 'package:machinetest/controller/counter_provider.dart';
 import 'package:sizer/sizer.dart';
 
 class CounterWidget extends StatelessWidget {
   final String dishId;
-  final DishListModel dishlist;
+  final CategoryDish dishlist;
   final Color color;
 
   const CounterWidget({
@@ -54,7 +54,7 @@ class CounterWidget extends StatelessWidget {
           GestureDetector(
             onTap: () {
               counterProvider.incrementCount(dishId);
-              DishListModel dishes = DishListModel(
+              CategoryDish dishes = CategoryDish(
                   dishId: dishId,
                   dishName: dishlist.dishName,
                   dishPrice: dishlist.dishPrice,
@@ -79,5 +79,5 @@ class CounterWidget extends StatelessWidget {
     );
   }
 
-  static provider(BuildContext context) {}
+  // static provider(BuildContext context) {}
 }

@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:machinetest/custom_widgets/container/non_veg_container.dart';
 import 'package:machinetest/custom_widgets/container/veg_container.dart';
 import 'package:machinetest/custom_widgets/dish_details/dish_details.dart';
-import 'package:machinetest/model/dish_model.dart';
+import 'package:machinetest/model/restaurent_model.dart';
 import 'package:machinetest/view/Tab_1/widgets/counter_widget.dart';
 import 'package:sizer/sizer.dart';
 
 class FoodDetailContainer extends StatelessWidget {
   const FoodDetailContainer({
     super.key,
-    required this.dishlist,
+    required this.cateDish,
   });
-  final DishListModel dishlist;
+  final CategoryDish cateDish;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(3.sp),
       child: Container(
         padding: EdgeInsets.all(7.sp),
-        height: dishlist.addonCat != null && dishlist.addonCat!.isNotEmpty
+        height: cateDish.addonCat != null && cateDish.addonCat!.isNotEmpty
             ? 180.sp
             : 149.sp,
         color: const Color.fromARGB(255, 255, 255, 255),
@@ -31,7 +31,7 @@ class FoodDetailContainer extends StatelessWidget {
                 SizedBox(
                   height: 10.sp,
                 ),
-                if (dishlist.dishType == 1)
+                if (cateDish.dishType == 1)
                   const NonVegContainer()
                 else
                   const VegContainer()
@@ -45,16 +45,16 @@ class FoodDetailContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DishName(
-                  dishName: dishlist.dishName,
+                  dishName: cateDish.dishName,
                 ),
                 Row(
                   children: [
-                    DishPrice(dishPrice: dishlist.dishPrice),
+                    DishPrice(dishPrice: cateDish.dishPrice),
                     SizedBox(
                       width: 61.sp,
                     ),
                     DishCalorie(
-                      calorie: dishlist.dishCalories.toString(),
+                      calorie: cateDish.dishCalories.toString(),
                     ),
                   ],
                 ),
@@ -62,20 +62,20 @@ class FoodDetailContainer extends StatelessWidget {
                   height: 10.sp,
                 ),
                 DishDescription(
-                  description: dishlist.dishDescription.toString(),
+                  description: cateDish.dishDescription.toString(),
                 ),
                 SizedBox(
                   height: 13.sp,
                 ),
                 CounterWidget(
                   color: const Color.fromARGB(255, 86, 190, 89),
-                  dishId: dishlist.dishId,
-                  dishlist: dishlist,
+                  dishId: cateDish.dishId,
+                  dishlist: cateDish,
                 ),
                 SizedBox(
                   height: 10.sp,
                 ),
-                if (dishlist.addonCat != null && dishlist.addonCat!.isNotEmpty)
+                if (cateDish.addonCat != null && cateDish.addonCat!.isNotEmpty)
                   const DishAddons(),
               ],
             ),
@@ -92,7 +92,7 @@ class FoodDetailContainer extends StatelessWidget {
                 ),
               ),
               child: DishImage(
-                dishimage: dishlist.dishImage.toString(),
+                dishimage: cateDish.dishImage.toString(),
               ),
             ),
           ],
