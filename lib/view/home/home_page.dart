@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
       builder: (context, value, child) => DefaultTabController(
         length: value.restaurentmodel?.tableMenuList.length ?? 0,
         child: (value.isloading)
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
             : Scaffold(
                 backgroundColor: Colors.white,
                 appBar: AppBar(

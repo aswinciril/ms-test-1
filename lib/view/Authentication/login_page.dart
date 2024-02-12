@@ -33,11 +33,6 @@ class LoginPage extends StatelessWidget {
             CustomButton(
               onpressed: () {
                 googleProvider.signInWithGoogle(context);
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => const HomePage(),
-                //     ));
               },
               width: 10,
               title: "Google",
