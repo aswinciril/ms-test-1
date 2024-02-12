@@ -36,7 +36,7 @@ class _OtpLoginPageState extends State<OtpLoginPage> {
       // Check if the user is not null
       if (user != null) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const HomePage(),
         ));
       } else {
         // Handle the case where the user is null

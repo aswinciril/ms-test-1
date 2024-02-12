@@ -15,7 +15,6 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final counterProvider = Provider.of<CounterProvider>(context);
 
-    // Create a set to store unique dish IDs
     Set<String> uniqueDishIds = {};
 
     // Iterate through selectedDishes to count unique dishes
@@ -71,16 +70,15 @@ class OrderPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          // OrderList
+
                           Positioned(
-                            top: 40
-                                .sp, // Adjust the position based on the height of the above container
+                            top: 40.sp,
                             left: 0,
                             right: 0,
                             bottom: 0,
                             child: Padding(
                               padding: EdgeInsets.all(2.sp),
-                              child: OrderList(),
+                              child: const OrderList(),
                             ),
                           ),
                         ],
@@ -145,7 +143,7 @@ class OrderPage extends StatelessWidget {
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.CENTER,
                         webShowClose: false,
-                        backgroundColor: Colors.green, // Use backgroundColor
+                        backgroundColor: Colors.green,
                         textColor: Colors.white,
                         fontSize: 16.0,
                       );

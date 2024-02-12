@@ -16,7 +16,7 @@ class UserLogout extends StatelessWidget {
     void logout(BuildContext context) {
       showDialog(
         context: context,
-        barrierDismissible: false, // Prevent dialog from closing on outside tap
+        barrierDismissible: false,
         builder: (BuildContext context) {
           // Show circular progress indicator dialog
           return AlertDialog(
@@ -26,24 +26,22 @@ class UserLogout extends StatelessWidget {
                 fontSize: 18.sp,
               ),
             ),
-            content: const CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 0, 0, 0)),
+            content: Transform.scale(
+              scale: 0.7,
+              child: const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                strokeWidth: 3,
+              ),
             ),
           );
         },
       );
-
-      // Delay execution for 3 seconds
       Future.delayed(const Duration(seconds: 3), () {
-        // Close the dialog
         Navigator.of(context).pop();
 
-        // Call the logout function
         counterProvider.clearCart();
         Provider.of<DishListController>(context, listen: false).resetState();
 
-        // Redirect to login page
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const LoginPage(),
         ));
@@ -66,20 +64,12 @@ class UserLogout extends StatelessWidget {
             final user = FirebaseAuth.instance.currentUser;
 
             if (user != null && user.providerData.isNotEmpty) {
-              // Check if the user is logged in with Google
               if (user.providerData
                   .any((info) => info.providerId == 'google.com')) {
                 googleProvider.signOutFromGoogle();
                 logout(context);
-                // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                //   builder: (context) => const LoginPage(),
-                // ));
               } else {
-                // User is not logged in with Google, navigate to login page directly
                 logout(context);
-                // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                //   builder: (context) => const LoginPage(),
-                // ));
               }
             }
           },

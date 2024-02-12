@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // late Future<void> _fetchData;
   List<RestaurantModel>? restaurentmodelList;
 
   @override
@@ -44,8 +43,13 @@ class _HomePageState extends State<HomePage> {
       builder: (context, value, child) => DefaultTabController(
         length: value.restaurentmodel?.tableMenuList.length ?? 0,
         child: (value.isloading)
-            ? const Center(
-                child: CircularProgressIndicator(),
+            ? const Scaffold(
+                backgroundColor: Colors.white,
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ),
+                ),
               )
             : Scaffold(
                 backgroundColor: Colors.white,
@@ -75,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.red,
                           ),
                           child: Text(
-                            "${uniqueDishIds.length}", // Display total count
+                            "${uniqueDishIds.length}",
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

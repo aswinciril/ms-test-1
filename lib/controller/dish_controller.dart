@@ -12,22 +12,7 @@ class DishListController extends ChangeNotifier {
   List<TableMenuList>? tableMenuList = [];
   final NetworkApiService apiService = NetworkApiService();
   bool isloading = false;
-  // DishModel dishModel = DishModel(); /
-  // Future<void> getDishesData() async {
-  //   final Response? response =
-  //       await apiService.getDishList(ApiEndPoints.baseUrl);
-  //   log("Data called ");
-  //   Map<String, dynamic> data = response!.data[0];
 
-  //   for (var dishList in data["table_menu_list"][0]["category_dishes"]) {
-  //     final list = DishListModel.fromJson(dishList);
-  //     dishmodelList.add(list);
-  //   }
-
-  //   log(dishmodelList.toString());
-  // }
-
-//new
   Future<void> getRestaurentData() async {
     tableMenuList?.clear();
     isloading = true;
@@ -52,9 +37,6 @@ class DishListController extends ChangeNotifier {
   }
 
   void resetState() {
-    // dishmodelList.clear();
-
-    // Notify listeners to rebuild widgets that depend on this controller
     notifyListeners();
   }
 }

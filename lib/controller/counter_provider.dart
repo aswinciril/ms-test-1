@@ -56,11 +56,11 @@ class CounterProvider extends ChangeNotifier {
   void incrementDish(CategoryDish dish) {
     // Update dish count and store the current dish
     currentDish = dish;
-    notifyListeners(); // Notify listeners of changes
+    notifyListeners();
   }
 
   int get totalCount {
-    // Calculate the total count based on your logic (e.g., summing individual dish counts)
+    // Calculate the total count based on your logic
     return dishCounts.values.fold(0, (sum, count) => sum + count);
   }
 

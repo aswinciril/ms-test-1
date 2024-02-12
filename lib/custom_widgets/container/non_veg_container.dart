@@ -9,12 +9,12 @@ class NonVegContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 11.sp, // Adjust the size of the square as needed
+      width: 11.sp,
       height: 11.sp,
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color.fromARGB(255, 255, 1, 1), // Outline color
-          width: 2.0, // Outline width
+          color: const Color.fromARGB(255, 255, 1, 1),
+          width: 2.0,
         ),
       ),
       child: Stack(
@@ -22,11 +22,11 @@ class NonVegContainer extends StatelessWidget {
         children: [
           Positioned(
             child: Container(
-              width: 20.0, // Adjust the size of the dot as needed
+              width: 20.0,
               height: 10.0,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red, // Dot color
+                color: Colors.red,
               ),
             ),
           ),

@@ -7,12 +7,12 @@ class VegContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 11.sp, // Adjust the size of the square as needed
+      width: 11.sp,
       height: 11.sp,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 11, 117, 2),
-          width: 2.0, // Outline width
+          color: const Color.fromARGB(255, 11, 117, 2),
+          width: 2.0,
         ),
       ),
       child: Stack(
@@ -20,11 +20,11 @@ class VegContainer extends StatelessWidget {
         children: [
           Positioned(
             child: Container(
-              width: 20.0, // Adjust the size of the dot as needed
+              width: 20.0,
               height: 10.0,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color.fromARGB(255, 11, 117, 2), // Dot color
+                color: Color.fromARGB(255, 11, 117, 2),
               ),
             ),
           ),
