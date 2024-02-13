@@ -3,7 +3,7 @@ import 'package:machinetest/model/restaurent_model.dart';
 
 class CounterProvider extends ChangeNotifier {
   final Map<String, int> dishCounts = {};
-  List<CategoryDish> selectedDishes = []; // Map to store dish IDs and counts
+  List<CategoryDish> selectedDishes = [];
   CategoryDish? currentDish;
 
   double get totalDishSum => _calculateTotalDishSum();
@@ -16,10 +16,11 @@ class CounterProvider extends ChangeNotifier {
       final dish = selectedDishes.firstWhere(
         (dish) => dish.dishId == dishId,
         orElse: () => CategoryDish(
-          dishImage: "", dishCurrency: "", dishDescription: "",
+          dishImage: "",
+          dishCurrency: "",
+          dishDescription: "",
           dishAvailability: false,
           dishId: dishId,
-          // Provide default values if the dish is not found
           dishName: '',
           dishPrice: 0,
           dishCalories: 0,
@@ -33,12 +34,9 @@ class CounterProvider extends ChangeNotifier {
     return sum;
   }
 
-  // Methods to increment/decrement counts based on dish ID
   void incrementCount(String dishId) {
     dishCounts[dishId] = (dishCounts[dishId] ?? 0) + 1;
-    if (dishCounts[dishId] == 0) {
-      // Add dish to orderedDishes
-    }
+    if (dishCounts[dishId] == 0) {}
     notifyListeners();
   }
 
@@ -46,7 +44,6 @@ class CounterProvider extends ChangeNotifier {
     if (dishCounts[dishId] != null && dishCounts[dishId]! > 0) {
       dishCounts[dishId] = (dishCounts[dishId] ?? 0) - 1;
       if (dishCounts[dishId] == 0) {
-        // If the count becomes 0, remove the dish from selectedDishes and decrement the unique dish count
         removeFromSelectedDishes(dishId);
       }
       notifyListeners();
@@ -54,13 +51,11 @@ class CounterProvider extends ChangeNotifier {
   }
 
   void incrementDish(CategoryDish dish) {
-    // Update dish count and store the current dish
     currentDish = dish;
     notifyListeners();
   }
 
   int get totalCount {
-    // Calculate the total count based on your logic
     return dishCounts.values.fold(0, (sum, count) => sum + count);
   }
 

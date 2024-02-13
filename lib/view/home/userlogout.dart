@@ -26,12 +26,14 @@ class UserLogout extends StatelessWidget {
                 fontSize: 18.sp,
               ),
             ),
-            content: Transform.scale(
-              scale: 0.7,
-              child: const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                strokeWidth: 3,
-              ),
+            content: const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  strokeWidth: 3,
+                ),
+              ],
             ),
           );
         },
